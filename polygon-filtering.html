@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--  Include mapboxgl javascript and css -->
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.css' rel='stylesheet'>
+        <!-- Include turf geo-awesomeness -->
+        <script src="https://npmcdn.com/@turf/turf@6.3.0/turf.min.js"></script>
+        <!--  Include Geojson Filtering  -->
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <!--  Include micro progress bar  -->
+        <script src="https://www.targomo.com/developers/scripts/mipb.min.js"></script>
+        <!--  Include targomo core -->
+        <script src='https://releases.targomo.com/core/0.4.3.js'></script>
+        <link rel="stylesheet" href="style/maps.css" />
+        <title>TGM Maps - Travel Times</title>
+    </head>
+    <body>
+        <!--  where the map will live  -->
+        <div id='map'></div>
+        <!-- Time filter bar -->
+        <div id="filter">
+            <div>Time (m)</div>
+            <input id="travel-time-bar" type="range" min="0" max="60" value="30" name="time" step="1"
+                onchange="rangevalue.value=value; filterPoints(value)" />
+            <output id="rangevalue">30</output>
+        </div>
+
+        <script src="javascript/polygon-filtering.js"></script>
+    </body>
+</html>  
+            

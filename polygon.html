@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--  Include mapboxgl javascript and css -->
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.css' rel='stylesheet'>
+        <!-- Include turf geo-awesomeness -->
+        <script src="https://npmcdn.com/@turf/turf@6.3.0/turf.min.js"></script>
+        <!-- Button Icons -->
+        <link rel="stylesheet" href="https://releases.targomo.com/tgm-icons/webfont/tgm-icon.css">
+        <!--  Include targomo core -->
+        <script src='https://releases.targomo.com/core/0.4.3.js'></script>
+        <link rel="stylesheet" href="style/maps.css" />
+        <title>TGM Maps - Simple Polygons</title>
+    </head>
+    <body>
+        <!--  where the map will live  -->
+        <div id='map'></div>
+        <!-- Buttons to change the travel type -->
+        <!-- Buttons to change the travel type -->
+        <div class="markers travel-type">
+            <div data-type="walk" class="marker-container type">
+                <span class="tgm-icon tgm-ux-mode-walk"></span>
+                <span class="tooltiptext">Walk</span>
+            </div>
+            <div data-type="bike" class="marker-container type active">
+                <span class="tgm-icon tgm-ux-mode-bike"></span>
+                <span class="tooltiptext">Bike</span>
+            </div>
+            <div data-type="car" class="marker-container type">
+                <span class="tgm-icon tgm-ux-mode-car"></span>
+                <span class="tooltiptext">Car</span>
+            </div>
+            <div data-type="transit" class="marker-container type">
+                <span class="tgm-icon tgm-ux-mode-transit"></span>
+                <span class="tooltiptext">Transit</span>
+            </div>
+        </div>
+
+        <script src="javascript/polygon.js"></script>
+    </body>
+</html>  
+            
