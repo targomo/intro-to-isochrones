@@ -33,7 +33,7 @@ So what is an Isochrone? You can find an in depth explanation [here](https://tra
 
 ### Tools
 
-Using the Targomo API doesn't require the use of any complex tools or libraries. Nothing beyond acquiring [Targomo](https://www.targomo.com/developers/pricing/) and [MapTiler](https://www.maptiler.com/) API keys is necessary. Everything in this article relies on  HTML, CSS and JavaScript so should run fine on almost any browser with any operating system. Nothing special needs to be installed on your computer to run any of the code examples here although I did use [Visual Studio Code](https://code.visualstudio.com/) and the [Debugger for Firefox](https://marketplace.visualstudio.com/items?itemName=firefox-devtools.vscode-firefox-debug) when creating these examples for convenience, but this could just as easily be done in you editor of choice (or even in a basic text editor).
+Using the Targomo API doesn't require the use of any complex tools or libraries. Nothing beyond acquiring [Targomo](https://www.targomo.com/developers/pricing/) and [MapTiler](https://www.maptiler.com/) API keys is necessary. Everything in this article relies on  HTML, CSS and JavaScript so should run fine on almost any browser with any operating system. Nothing special needs to be installed on your computer to run any of the code examples here although I did use [Visual Studio Code](https://code.visualstudio.com/) and the [Debugger for Firefox](https://marketplace.visualstudio.com/items?itemName=firefox-devtools.vscode-firefox-debug) when creating these examples for convenience, but this could just as easily be done in your editor of choice (or even in a basic text editor).
 
 ### HTML dependencies
 
@@ -43,7 +43,7 @@ We use a small selection of HTML dependencies for our maps, the targomo core lib
     <!--  Include mapboxgl javascript and css for the background map and visualization of geojson-->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.css' rel='stylesheet'>
-    <!-- Include turf geo-awesomeness -->
+    <!-- Include turf geo-awareness -->
     <script src="https://npmcdn.com/@turf/turf@6.3.0/turf.min.js"></script>
     <!--  Include D3.js for Geojson Filtering  -->
     <script src="https://d3js.org/d3-geo.v2.min.js"></script>
@@ -182,7 +182,7 @@ As mentioned above I will be using the Targomo JavaScript client library to make
 const client = new tgm.TargomoClient('westcentraleurope', '__Your_Targomo_API_Key__');
 ```
 
-An 'endpoint' simply defines the geographical region you are working in. A full list of available endpoints and their coverage areas can be found [here](https://www.targomo.com/developers/resources/coverage/) but we will be using the `westcentraleurope` endpoint for all examples here. Once your client is created making the request requires two inputs.
+An 'endpoint' simply defines the geographical region you are working in. A full list of available endpoints and their coverage areas can be found [here](https://www.targomo.com/developers/resources/coverage/) but we will be using the `westcentraleurope` endpoint for all examples here. Once your client is created, making the request requires two inputs.
 
 **Sources**
 
@@ -229,7 +229,7 @@ More details about these parameters and more can be found in the [documentation]
 - `serializer` : This is the format of the response data. We also offer a custom compact `json` serializer for use with our leaflet and Google Maps client libraries but will be focusing on the GeoJSON serializer in this article.
 - `simplify` : This is used to smooth the edges of polygons by reducing the number of points based on the input number (in meters). Points closer than the given number will be removed.
 - `quadrantSegments` : The vertices of the polygons are buffered in a semi-circular fashion, this determines how many segments a 90 degree angle would be translated into. The higher the number, the smoother/more rounded the edges of the polygon. Ranges between from 2 to 8.
-- `buffer` : This defines and amount in the given `srid` to widen each polygon by. `buffer`, `quadrantSegments`, and `simplify` can be used in conjunction to make returned polygons both nicer to look at and and easier to comprehend. 
+- `buffer` : This defines and amount in the given `srid` to widen each polygon by. `buffer`, `quadrantSegments`, and `simplify` can be used in conjunction to make returned polygons both nicer to look at and easier to comprehend. 
 
 These parameters, alongside many others, allow for extensive customizability in the requests enabling polygons to be created for highly specific use cases. Once you have these two parameters defined you only need to call the `polgons.fetch` request function.
 
@@ -311,7 +311,7 @@ The response will return a `FeatureCollection` containing a `MultiPolygon` for e
 
 ## Simple Polygon Reachability
 
-Whether checking areas within a reachable time/distance of a new home by car or analyzing the accessibility of a potential school via public transport, the Isochrone API offers what I hope to demonstrate as a quick, easy and relatively simple solution. For this example we will be using a single source to explore the effects of the different `options` parameters. Fist let us make an HTML page with all the dependencies we need. Add the following to the `polygon.html` file.
+Whether checking areas within a reachable time/distance of a new home by car or analyzing the accessibility of a potential school via public transport, the Isochrone API offers what I hope to demonstrate as a quick, easy and relatively simple solution. For this example we will be using a single source to explore the effects of the different `options` parameters. First let us make an HTML page with all the dependencies we need. Add the following to the `polygon.html` file.
 
 ```html
 <!DOCTYPE html>
@@ -320,7 +320,7 @@ Whether checking areas within a reachable time/distance of a new home by car or 
         <!--  Include mapboxgl javascript and css -->
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js'></script>
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.css' rel='stylesheet'>
-        <!-- Include turf geo-awesomeness -->
+        <!-- Include turf geo-awareness -->
         <script src="https://npmcdn.com/@turf/turf@6.3.0/turf.min.js"></script>
         <!-- Button Icons -->
         <link rel="stylesheet" href="https://releases.targomo.com/tgm-icons/webfont/tgm-icon.css">
@@ -392,7 +392,7 @@ const map = new mapboxgl.Map({
 }).addControl(new mapboxgl.NavigationControl());
 ```
 
-The empty data will be used to initialize the map while the color array is used to define the colors of the different polygon range bands. The Marker will represent our source point which we want to be 'draggable' so we can investigate change the source location. Now we need to actually retrieve the polygons and fill in the map. To do so we will create 3 Utility methods.
+The empty data will be used to initialize the map while the color array is used to define the colors of the different polygon range bands. The Marker will represent our source point which we want to be 'draggable' so we can change the source location. Now we need to actually retrieve the polygons and fill in the map. To do so we will create 3 Utility methods.
 
 ```javascript
 // Perform the polygon request and update the map using the result
@@ -463,7 +463,7 @@ That's it, load the HTML up in any browser and you should have a simple biking p
 
 <img src="https://www.targomo.com/wp-content/uploads/2021/06/simple-polygon.png" alt="drawing" width="80%"/>
 
-Now we want to be able to look at polygons for different travel types. To update the travel type we will need to update the `options.travelType` parameter to one of `bike`, `walk`, `car` or `transit` and send a new request. Lets add some travel type buttons. First add the following to the HTML before the `script` is loaded.
+Now we want to be able to look at polygons for different travel types. To update the travel type we will need to update the `options.travelType` parameter to one of `bike`, `walk`, `car` or `transit` and send a new request. Let's add some travel type buttons. First add the following to the HTML before the `script` is loaded.
 
 ```html
 <!-- Buttons to change the travel type -->
@@ -590,7 +590,7 @@ In the first row we can see that bike and walk look very similar. Generally all 
 
 Car and transit, on the other hand, are completely different stories. The car polygon bands are, aside from being significantly larger, much more distorted as the cars move on and off highways or into smaller side streets and this creates long stretched reachable lines along major roads. We are also more likely to see holes in the polygons or sudden cutoffs in reachability as we interact with places a car cannot go (such as parks) or infrastructure with limited entrances (for example large stadiums or airports).
 
-Transit polygons create shapes unlike any other travel mode. A mixture of trains, buses, or even simply walking creates pockets of disconnected or overlapping polygons for each band based on the position of transit stops. The separation and distortion of the polygons gets progressively more pronounced the further away from the source. This is also the most time sensitive of the travel types as a difference of only a few minutes can determine whether one can get to a specific bus or train in time to use a specific route. All of these factors and more can be adjusted in the options of the request. This will be covered in more detail further on, but first lets look at requests with more than one source.
+Transit polygons create shapes unlike any other travel mode. A mixture of trains, buses, or even simply walking creates pockets of disconnected or overlapping polygons for each band based on the position of transit stops. The separation and distortion of the polygons gets progressively more pronounced the further away from the source. This is also the most time sensitive of the travel types as a difference of only a few minutes can determine whether one can get to a specific bus or train in time to use a specific route. All of these factors and more can be adjusted in the options of the request. This will be covered in more detail further on, but first let's look at requests with more than one source.
 
 ## Multi-Source Polygons and Polygon Intersections
 
@@ -723,7 +723,7 @@ Now you should have another set of buttons to configure the polygons that looks 
 
 <img src="https://www.targomo.com/wp-content/uploads/2021/06/walk-union.png" alt="drawing" width="80%"/>
 
-Okay so now lets look at what `intersection` and `average` would look like with these same points.
+Okay so now let's look at what `intersection` and `average` would look like with these same points.
 
 <img src="https://www.targomo.com/wp-content/uploads/2021/06/walk-intersection.png" alt="drawing" width="40%"/>
 <img src="https://www.targomo.com/wp-content/uploads/2021/06/walk-average.png" alt="drawing" width="40%"/>
@@ -734,7 +734,7 @@ As shown here `intersection` provides useful insights into the areas reachable (
 
 When displaying a group of locations to a viewer (maybe a customer, a business associate or just as part of a larger presentation) you may want to filter your target locations based on their reachability to one or more sources. Targomo's APIs offer several methods that can achieve this, each with their own contextual advantages and disadvantages. The most [Travel Time API](https://www.targomo.com/developers/apis/travel_time/) would probable provide the most precise results for filtering targets as you can filter on and check precise timing, but for this example we will look at how to use polygons to filter target locations. In this example we will be trying to find all houses reachable from a selection of beaches on the Italian cost. This may be useful for those seeking property in the area or maybe just holiday makers finding a place to stay. The same principles used here could also just as easily be applied to, for example, seeing how many outlet stores are in the catchment area of a selection or warehouses.
 
-We will be using some publicly available data for sources and targets and then filter them using one polygon range band. Highly complex filtering can be achieved such as changing display depending on which of a number of range bands the target lands in or dynamically filter targets as they enter or leave a location, but in this case we will be simply be generating a single polygon from a selection of sources and filtering out all targets not contained within the polygon. We will be using `d3js` to filter the targets as well as a a custom targomo progress bar so our dependencies will look a little different for this file. Like before you will need to create two files `polygon-filtering.html` and `javascript/polygon-filtering.js`. The `polygon-filtering.html` is a bit different from the rest and should look something like this.
+We will be using some publicly available data for sources and targets and then filter them using one polygon range band. Highly complex filtering can be achieved such as changing display depending on which of a number of range bands the target lands in or dynamically filter targets as they enter or leave a location, but in this case we will be simply be generating a single polygon from a selection of sources and filtering out all targets not contained within the polygon. We will be using `d3js` to filter the targets as well as a custom targomo progress bar so our dependencies will look a little different for this file. Like before you will need to create two files `polygon-filtering.html` and `javascript/polygon-filtering.js`. The `polygon-filtering.html` is a bit different from the rest and should look something like this.
 
 ```html
 <!DOCTYPE html>
@@ -835,7 +835,7 @@ const map = new mapboxgl.Map({
     .addControl(new mapboxgl.AttributionControl({ compact: true, customAttribution: attributionText }));
 ```
 
-Much of this is identical to what we have defined before with only a few changes and new additions. The map is made in pretty much the same way before with the center set directly instead of using a source coordinate. Of the two data URLs present we will use the beaches for the sources and the houses as the targets. Lastly the progress bar will be used to show when data is being loaded. Now lets create the methods we will need to retrieve and process this data. Firstly the source and target data needs to be retrieved.
+Much of this is identical to what we have defined before with only a few changes and new additions. The map is made in pretty much the same way before with the center set directly instead of using a source coordinate. Of the two data URLs present we will use the beaches for the sources and the houses as the targets. Lastly the progress bar will be used to show when data is being loaded. Now let's create the methods we will need to retrieve and process this data. Firstly the source and target data needs to be retrieved.
 
 ```javascript
 // Retrieve the OSM data and update the sources/targets
